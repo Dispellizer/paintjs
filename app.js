@@ -10,12 +10,15 @@ const CANVAS_SIZE = 700;
 
 canvas.width = CANVAS_SIZE;
 canvas.height = CANVAS_SIZE;
+// canvas의 크기 지정(css말고 js에서 따로 지정해줘야함)
 
 ctx.fillStyle = "white";
 ctx.fillRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
 // canvas의 배경을 흰색으로 만들기 위해서
 ctx.strokeStyle = INITIAL_COLOR;
+// 선의 색
 ctx.fillStyle = INITIAL_COLOR;
+// 채우는 색
 ctx.lineWidth = 2.5;
 
 let painting = false;
@@ -32,12 +35,17 @@ function startPainting() {
 function onMouseMove(event) {
   const x = event.offsetX;
   const y = event.offsetY;
+  //   canvas에서 x, y의 좌표 값 가져오기
   if (!painting) {
     ctx.beginPath();
+    // 새로운 경로를 만듬(펜을 잡고있다는 개념)
     ctx.moveTo(x, y);
+    // 펜을 x와 y좌표로 이동
   } else {
     ctx.lineTo(x, y);
+    // 현재 드로잉 위치에서 x,y로 지정된 위치까지 선을 그림
     ctx.stroke();
+    // 선을 이용하여 도형을 그림
   }
 }
 
@@ -66,6 +74,7 @@ function handleModeClick() {
 function handleCanvasClick() {
   if (filling) {
     ctx.fillRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
+    // 시작점, 크기 만큼 직 사각형을 그린다.
   }
 }
 
